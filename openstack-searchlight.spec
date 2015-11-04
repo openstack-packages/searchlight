@@ -1,13 +1,13 @@
 %global service searchlight
 %global release_name liberty
 Name:           openstack-%{service}
-Version:        0.1.0
-Release:        1%{?dist}
+Version:        XXX
+Release:        XXX
 Summary:        OpenStack Indexing and Search
 
 License:        ASL 2.0
 URL:            https://launchpad.net/searchlight
-Source0:        https://launchpad.net/%{service}/%release_name}/%{version}/+download/searchlight-%{version}.tar.gz
+Source0:        http://tarballs.openstack.org/searchlight/searchlight-master.tar.gz
 
 BuildRequires:  python-setuptools
 BuildRequires:  python2-devel
@@ -54,7 +54,7 @@ is greatly dependent upon a rich, dynamic, near real time faceted and
 aggregated search capability with a strong query language.
 
 %prep
-%setup -q -n %{service}-%{version}
+%setup -q -n %{service}-%{upstream_version}
 
 rm -rf {test-,}requirements.txt
 
@@ -75,7 +75,7 @@ python setup.py install --skip-build --root %{buildroot}
 %doc README.rst
 %license LICENSE
 %{python_sitelib}/%{service}
-%{python_sitelib}/%{service}-%{version}-py%{python2_version}.egg-info
+%{python_sitelib}/%{service}-*-py%{python2_version}.egg-info
 %{_bindir}/searchlight-api
 %{_bindir}/searchlight-control
 %{_bindir}/searchlight-listener
@@ -83,5 +83,3 @@ python setup.py install --skip-build --root %{buildroot}
 
 
 %changelog
-* Fri Oct 30 2015 Matthias Runge <mrunge@redhat.com>
-- initial package
